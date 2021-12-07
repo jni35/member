@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">login</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <h1>회원 목록</h1>
+            <table>
+                <tr>
+                    <th>아이디</th>
+                    <th>패스워드</th>
+                    <th>이름</th>
+                    <th>나이</th>
+                    <th>가입일</th>
+                </tr>
+                {% for i in rs %}
+                <tr>
+                    <td><a href="{{ url_for('member_view', id=i[0]) }}">{{ i[0] }}</a></td>
+                    <td>{{ i[1] }}</td>
+                    <td>{{ i[2] }}</td>
+                    <td>{{ i[3] }}</td>
+                    <td>{{ i[4] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
+    </div>
+</body>
+</html>

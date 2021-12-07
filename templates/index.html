@@ -10,10 +10,10 @@
         <header>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
                     <li><a href="#">login</a></li>
                     <li><a href="#">회원가입</a></li>
-                    <li><a href="#">게시판</a></li>
+                    <li><a href="{{url_for('memberlist')}}">회원목록</a></li>
                 </ul>
             </nav>
         </header>

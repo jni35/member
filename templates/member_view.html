@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원 상세정보</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="#">login</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <h1>회원 정보</h1>
+            <table class="tbl_view">
+                <colgroup>
+                    <col style="background-color: #eee">
+                    {% if rs %}
+                </colgroup>
+                <tr>
+                    <td>아이디</td>
+                    <td><input type="text" name="mid" value="{{ rs[0] }}"></td>
+                </tr>
+                <tr>
+                    <td>패스워드</td>
+                    <td><input type="text" name="passwd" value="{{ rs[1] }}"></td>
+                </tr>
+                <tr>
+                    <td>이름</td>
+                    <td><input type="text" name="name" value="{{ rs[2] }}"></td>
+                </tr>
+                <tr>
+                    <td>나이</td>
+                    <td><input type="text" name="age" value="{{ rs[3] }}"></td>
+                </tr>
+                <tr>
+                    <td>가입일</td>
+                    <td><input type="text" name="regDate" value="{{ rs[4] }}"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="background-color: #fff">
+                        <a href="{{ url_for('memberlist') }}" >목록</a>
+                    </td>
+                </tr>
+                {% endif %}
+
+            </table>
+        </section>
+    </div>
+
+</body>
+</html>
