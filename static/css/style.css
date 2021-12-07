@@ -1,0 +1,14 @@
+/*전체 스타일*/
+*{margin:0; padding:0;}
+#container{width:1000px; margin:10px auto;}
+header{height:100px;}
+nav ul{list-style: none; text-align: right; margin-right:150px;}
+nav ul li{display:inline-block; margin:10px;
+    border-top:3px solid #333; padding:10px;}
+nav ul li a{text-decoration: none; color: #000}
+nav ul li:hover{background-color: #eee}
+section{text-align: center}
+section h2{margin-bottom: 20px;}
+
+/*index 스타일*/
+

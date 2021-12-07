@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome~ mysite!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">login</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">게시판</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section>
+            <h1>회원 관리 커뮤니티입니다.</h1>
+            <h2>Have a nice Day!!</h2>
+            <img src="{{ url_for('static', filename='images/activity.jpg') }}" id="pic">
+        </section>
+    </div>
+    <script src="{{ url_for('static', filename='js/main_js.js') }}"></script>
+</body>
+</html>
