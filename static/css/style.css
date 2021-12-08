@@ -17,10 +17,38 @@ section table{width: 600px; margin:0 auto; border-collapse:collapse;}
 section h1{margin-bottom: 20px;}
 section table, th, td{border: 1px solid #ccc; padding: 10px}
 section th{background-color: #eee;}
+section table a{color: #000;}
+
 
 /*member_view 스타일*/
-section.tbl_view{width: 450px;}
-section.tbl_view input{width: 200px; height:30px;}
+section .tbl_view{width: 450px;}
+section .tbl_view input{width: 200px; height:30px;}
+section .tbl_view a{color:#00f;}
+
+/*register 스타일*/
+section .join{width: 550px; margin:0 auto;}
+section .join fieldset{border-radius: 4px}
+section .join ul{list-style:none; padding:10px;}
+section .join ul li{margin:15px;}
+section .join ul label{width:120px; float:left; text_aline:right;}
+section .join ul input{width:250px; height: 30px; border-radius: 4px; border: 1px solid #ccc;}
+section .join ul input[type='submit']{width:100px; height: 30px;}
+section .join ul input[type='reset']{width:100px; height: 30px;}
+
+/*login 스타일*/
+section .login{width:450px; margin:0 auto;}
+section .login fieldset{border-radius: 4px}
+section .login p{color: #f00; font-weight: bold; padding-top: 10px;}
+section .login ul{list-style:none; padding:10px;}
+section .login ul li{margin: 20px;}
+section .login ul label{width:120px; float:left; text_aline:right;}
+section .login ul input{width:250px; height: 30px; border-radius: 4px; border: 1px solid #ccc;}
+section .login ul input[type='submit']{width:100px; height: 30px;}
+
+
+
+
+
 
 
 

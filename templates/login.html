@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div id="container">
+      {% include 'navbar.html' %}
+      <section>
+          <h1>로그인</h1>
+          <form action="{{ url_for('login') }}" method="post" class="login">
+              <fieldset>
+                  {% if error %}
+                  <p>{{ error }}</p>
+                  {% endif %}
+                    <ul>
+                        <li>
+                            <label for="mid">아이디</label>
+                            <input type="text" id="mid" name="mid">
+                        </li>
+                        <li>
+                            <label for="passwd1">비밀번호</label>
+                            <input type="password" id="passwd1" name="passwd">
+                        </li>
+                        <li>
+                            <input type="submit" value="로그인">
+                        </li>
+                    </ul>
+                </fieldset>
+            </form>
+      </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            {% if session %}   <!--세션이 있다면-->
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('logout')}}">logout</a></li>
+                <li><a href="{{ url_for('register') }}">회원가입</a></li>
+                <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
+            {% else %}
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('login')}}">login</a></li>
+                <li><a href="{{ url_for('register') }}">회원가입</a></li>
+                <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
+            {% endif %}
+
+        </ul>
+    </nav>
+</header>
+</body>
+</html>

@@ -7,16 +7,7 @@
 </head>
 <body>
     <div id="container">
-        <header>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                    <li><a href="#">login</a></li>
-                    <li><a href="#">회원가입</a></li>
-                    <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
-                </ul>
-            </nav>
-        </header>
+        {% include 'navbar.html' %}
         <section>
             <h1>회원 정보</h1>
             <table class="tbl_view">
@@ -50,7 +41,6 @@
                     </td>
                 </tr>
                 {% endif %}
-
             </table>
         </section>
     </div>
