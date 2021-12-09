@@ -10,6 +10,7 @@
         {% include 'navbar.html' %}
         <section>
             <h1>회원 정보</h1>
+            <form action="{{ url_for('member_edit', id=rs[0])}}" method="POST">
             <table class="tbl_view">
                 <colgroup>
                     <col style="background-color: #eee">
@@ -17,33 +18,28 @@
                 </colgroup>
                 <tr>
                     <td>아이디</td>
-                    <td><input type="text" name="mid" value="{{ rs[0] }}" readonly></td>
+                    <td><input type="text" name="mid" value="{{ rs[0] }}"></td>
                 </tr>
                 <tr>
                     <td>패스워드</td>
-                    <td><input type="text" name="passwd" value="{{ rs[1] }}" readonly></td>
+                    <td><input type="text" name="passwd" value="{{ rs[1] }}"></td>
                 </tr>
                 <tr>
                     <td>이름</td>
-                    <td><input type="text" name="name" value="{{ rs[2] }}" readonly></td>
+                    <td><input type="text" name="name" value="{{ rs[2] }}"></td>
                 </tr>
                 <tr>
                     <td>나이</td>
-                    <td><input type="text" name="age" value="{{ rs[3] }}" readonly></td>
+                    <td><input type="text" name="age" value="{{ rs[3] }}"></td>
                 </tr>
                 <tr>
                     <td>가입일</td>
-                    <td><input type="text" name="regDate" value="{{ rs[4] }}" readonly></td>
+                    <td><input type="text" name="regDate" value="{{ rs[4] }}"></td>
                 </tr>
                 <tr>
                    <td colspan="2" style="background-color: #fff">
-                        <a href="{{ url_for('memberlist') }}" >목록</a>
-                        {% if ssid == rs[0] %}
-                        <a href="{{ url_for('member_edit',id=rs[0]) }}" >수정</a>
-                        <a onclick ="return confirm('정말로 삭제하시겠습니까?')"
-                            href="{{ url_for('member_del',id=rs[0]) }}">삭제</a>
-                        {% endif %}
-
+                        <input type="submit" value="저장">
+                        <input type="reset" value="취소">
                     </td>
                 </tr>
                 {% endif %}

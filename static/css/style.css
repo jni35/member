@@ -45,6 +45,11 @@ section .login ul label{width:120px; float:left; text_aline:right;}
 section .login ul input{width:250px; height: 30px; border-radius: 4px; border: 1px solid #ccc;}
 section .login ul input[type='submit']{width:100px; height: 30px;}
 
+/*member_edit*/
+section .tbl_edit{width: 450px;}
+section .tbl_edit input{width: 200px; height:30px;}
+section .tbl_edit input[type-'submit']{width: 100px; height:30px;}
+section .tbl_edit input[type-'reset']{width: 100px; height:30px;}
 
 
 
