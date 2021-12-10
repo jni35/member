@@ -55,16 +55,23 @@ def register():
         pwd = request.form['passwd']
         name = request.form['name']
         age = request.form['age']
-        date = request.form['regDate']
 
+        # 회원 가입
         conn = getconn()
         cur = conn.cursor()
-        sql = "INSERT INTO member VALUES ('%s','%s','%s','%s','%s')"\
-            % (id, pwd, name, age, date)
+        sql = "INSERT INTO member(mid, passwd, name, age) VALUES ('%s','%s','%s','%s')"\
+            % (id, pwd, name, age)
         cur.execute(sql)    # 실행 함수
         conn.commit()       # 커밋 완료
+
+        # 가입 후 자동 로그인
+        sql = "SELECT * FROM member WHERE mid='%s'" % (id)
+        cur.execute(sql)
+        rs=cur.fetchone()
         conn.close()
-        return redirect(url_for('register.html'))
+        if rs:
+            session['userID'] = id # 자동 로그인 - session 필수, session - 가입,로그인시 만듦
+        return redirect(url_for('memberlist'))
     else:
         return render_template('register.html')
 
@@ -79,7 +86,7 @@ def login():
         cur = conn.cursor()
         sql = "SELECT * FROM member WHERE mid = '%s' AND passwd ='%s'"%(id, pwd)
         cur.execute(sql)
-        rs = cur.fetchone() # db에서 찾은 데이터 가져옴
+        rs = cur.fetchone()     # db에서 찾은 데이터 가져옴
         conn.close()
         if rs:
             session['userID'] = id  #세션 발급(통행증)
@@ -93,7 +100,8 @@ def login():
 
 @app.route('/logout/')
 def logout():
-    session.pop("userID")   #세션 삭제
+    # session.pop("userID")   #id 세션 삭제
+    session.clear()     # 전체 세션 삭제
     return redirect(url_for('index'))
 
 @app.route('/member_del/<string:id>/')   #삭제 url 생성
@@ -115,11 +123,11 @@ def member_edit(id):
         pwd = request.form['passwd']
         name = request.form['name']
         age = request.form['age']
-        date = request.form['regDate']
+        # date = request.form['regDate']
         #db 연결
         conn = getconn()
         cur = conn.cursor()
-        sql = "UPDATE member SET passwd='%s', name='%s',age='%s',regDate='%s'"\
+        sql = "UPDATE member SET passwd='%s', name='%s',age='%s', regDate='%s'"\
             "WHERE mid= '%s'" % (pwd, name, age, date, id)
         cur.execute(sql)  # 실행 함수
         conn.commit()  # 커밋 완료
