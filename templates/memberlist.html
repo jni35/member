@@ -6,16 +6,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    {% if ssid == null %}
-<!-- session이 없다면 즉, 로그인하지 않았다면 -->
-    <script>
-        alert("먼저 로그인을 해주세요.");
-        location.href = '/login/';
-    </script>
-<!--경로이동 함수(객체) js-location.herf , hy-rediect-->
-    {% endif %}
-    {% include 'navbar.html' %}
     <div id="container">
+    {% include 'navbar.html' %}
         <section>
             <h1>회원 목록</h1>
             <table>

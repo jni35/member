@@ -32,7 +32,7 @@ section .join ul{list-style:none; padding:10px;}
 section .join ul li{margin:15px;}
 section .join ul label{width:120px; float:left; text_aline:right;}
 section .join ul input{width:250px; height: 30px; border-radius: 4px; border: 1px solid #ccc;}
-section .join ul input[type='submit']{width:100px; height: 30px;}
+section .join ul input[type='button']{width:100px; height: 30px;}
 section .join ul input[type='reset']{width:100px; height: 30px;}
 
 /*login 스타일*/
@@ -50,6 +50,19 @@ section .tbl_edit{width: 450px;}
 section .tbl_edit input{width: 200px; height:30px;}
 section .tbl_edit input[type-'submit']{width: 100px; height:30px;}
 section .tbl_edit input[type-'reset']{width: 100px; height:30px;}
+
+/*boardlist 스타일*/
+section .btn_write{text-align: right; margin: 15px 200px;}
+section .btn_write input{padding: 10px 20px}
+
+/*writing 스타일*/
+section .writing{width: 600px; margin:0 auto;}
+section .writing input[type='text']{width: 550px; height: 30px}
+section .writing textarea{width:550px; height:300px;}
+section .writing input[type='submit'],[type='reset']{width:100px; height:30px;}
+
+
+
 
 
 

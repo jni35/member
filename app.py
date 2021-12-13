@@ -10,11 +10,7 @@ def getconn():
 
 @app.route('/') #url경로
 def index():
-    if 'userID' in session:    #session에 userID가 존재하면
-        ssid = session.get('userID')    #session을 가져온다.
-        return render_template('index.html', ssid=ssid)
-    else:
-        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/memberlist/')
 def memberlist():
@@ -24,11 +20,7 @@ def memberlist():
     cur.execute(sql)
     rs = cur.fetchall() #db에서 검색한 테이터
     conn.close()
-    if 'userID' in session:  # session에 userID가 존재하면
-        ssid = session.get('userID')  # session을 가져온다.
-        return render_template('memberlist.html', rs=rs, ssid=ssid)
-    else:
-        return render_template('memberlist.html')
+    return render_template('memberlist.html', rs=rs)
 
 
 @app.route('/member_view/<string:id>/')
@@ -41,11 +33,7 @@ def member_view(id):    #mid를 경로로 설정하고 매개변수로 넘겨준
     #목록을 불러올때는 fetchall()을 사용한다.
     #목록을 1개씩 받아올때는 fetchone()을 사용한다.
     conn.close()
-    if 'userID' in session:    #session에 userID가 존재하면
-        ssid = session.get('userID')    #session을 가져온다.
-        return render_template('member_view.html', rs=rs, ssid=ssid)
-    else:
-        return render_template('member_view.html')
+    return render_template('member_view.html', rs=rs)
 
 @app.route('/register/', methods=['GET','POST'])
 def register():
@@ -59,10 +47,11 @@ def register():
         # 회원 가입
         conn = getconn()
         cur = conn.cursor()
-        sql = "INSERT INTO member(mid, passwd, name, age) VALUES ('%s','%s','%s','%s')"\
-            % (id, pwd, name, age)
+        sql = "INSERT INTO member(mid, passwd, name, age) VALUES ('%s','%s','%s', %s)"\
+            % (id, pwd, name, age)  # 문자 = '%s', 숫자 = %s
         cur.execute(sql)    # 실행 함수
         conn.commit()       # 커밋 완료
+
 
         # 가입 후 자동 로그인
         sql = "SELECT * FROM member WHERE mid='%s'" % (id)
@@ -123,14 +112,14 @@ def member_edit(id):
         pwd = request.form['passwd']
         name = request.form['name']
         age = request.form['age']
-        # date = request.form['regDate']
+
         #db 연결
         conn = getconn()
         cur = conn.cursor()
-        sql = "UPDATE member SET passwd='%s', name='%s',age='%s', regDate='%s'"\
-            "WHERE mid= '%s'" % (pwd, name, age, date, id)
+        sql = "UPDATE member SET passwd='%s', name='%s', age='%s'"\
+            "WHERE mid= '%s'" % (pwd, name, age, id)
         cur.execute(sql)  # 실행 함수
-        conn.commit()  # 커밋 완료
+        conn.commit()   # 커밋 완료
         conn.close()
         return redirect(url_for('member_view', id=id))
     else:
@@ -140,11 +129,35 @@ def member_edit(id):
         cur.execute(sql)
         rs = cur.fetchone()  # db에서 찾은 데이터 가져옴
         conn.close()
-        if 'userID' in session:
-            ssid = session.get('userID')
-            return render_template('member_edit.html', rs=rs, ssid=ssid)
-        else:
-            return render_template('member_edit.html')
+        return render_template('member_edit.html', rs=rs)
 
+@app.route('/boardlist/')
+def boardlist():
+    conn = getconn()
+    cur = conn.cursor()
+    sql = "SELECT * FROM board ORDER BY bno DESC"
+    cur.execute(sql)
+    rs = cur.fetchall()
+    conn.close()
+    return render_template('boardlist.html', rs=rs)
+
+@app.route('/writing/', methods = ['GET','POST'])
+def writing():
+    if request.method == "POST":
+        title = request.form['title']
+        content = request.form['content']
+        mid = session.get('userID')
+
+        conn = getconn()
+        cur = conn.cursor()
+        sql = "INSERT INTO board(title, content, mid) VALUES ('%s','%s','%s')" \
+              % (title, content, mid)
+        cur.execute(sql)
+        conn.commit()
+        print("게시글 추가")
+        conn.close()
+        return redirect(url_for('boardlist'))
+    else:
+        return render_template('writing.html')
 
 app.run(debug=True)

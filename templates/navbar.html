@@ -10,16 +10,15 @@
         <ul>
             {% if session %}   <!--세션이 있다면-->
                 <li><a href="{{ url_for('index') }}">Home</a></li>
-                <li><a href="{{ url_for('logout')}}">({{ ssid }}님)logout</a></li>
-                <li><a href="{{ url_for('register') }}">회원가입</a></li>
+                <li><a href="{{ url_for('logout')}}">({{ session['userID'] }}님)logout</a></li>
                 <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
+                <li><a href="{{ url_for('boardlist') }}">게시판</a></li>
             {% else %}
                 <li><a href="{{ url_for('index') }}">Home</a></li>
                 <li><a href="{{ url_for('login')}}">login</a></li>
-                <li><a href="{{ url_for('register') }}">회원가입</a></li>
-                <li><a href="{{ url_for('memberlist') }}">회원목록</a></li>
+                <li><a href="{{ url_for('boardlist') }}">회원가입</a></li>
+                <li><a href="boardlist">게시판</a></li>
             {% endif %}
-
         </ul>
     </nav>
 </header>

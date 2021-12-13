@@ -11,18 +11,18 @@
         <section>
             <h1>회원 정보</h1>
             <form action="{{ url_for('member_edit', id=rs[0])}}" method="POST">
-            <table class="tbl_view">
+            <table class="tbl_edit">
                 <colgroup>
                     <col style="background-color: #eee">
-                    {% if rs %}
                 </colgroup>
+                {% if rs %}
                 <tr>
                     <td>아이디</td>
                     <td><input type="text" name="mid" value="{{ rs[0] }}"></td>
                 </tr>
                 <tr>
                     <td>패스워드</td>
-                    <td><input type="text" name="passwd" value="{{ rs[1] }}"></td>
+                    <td><input type="password" name="passwd" value="{{ rs[1] }}"></td>
                 </tr>
                 <tr>
                     <td>이름</td>

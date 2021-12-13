@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="container">
+        {% include 'navbar.html' %}
+        <section>
+            <h1>게시글 목록</h1>
+            <table>
+                <tr>
+                    <th>번호</th><th>제목</th><th>작성일</th><th>글쓴이</th>
+                </tr>
+                {% for i in rs %}
+                <tr>
+                    <td>{{i[0]}}</td>
+                    <td>{{i[1]}}</td>
+                    <td>{{i[3]}}</td>
+                    <td>{{i[4]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="btn_write">
+                <input type="button" value="글쓰기" onclick="goWrite()">
+            </div>
+        </section>
+    </div>
+    <script>
+        function goWrite(){
+            location.href = '/writing/'}
+    </script>
+</body>
+</html>

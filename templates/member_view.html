@@ -38,7 +38,7 @@
                 <tr>
                    <td colspan="2" style="background-color: #fff">
                         <a href="{{ url_for('memberlist') }}" >목록</a>
-                        {% if ssid == rs[0] %}
+                        {% if session['userID'] == rs[0] %}
                         <a href="{{ url_for('member_edit',id=rs[0]) }}" >수정</a>
                         <a onclick ="return confirm('정말로 삭제하시겠습니까?')"
                             href="{{ url_for('member_del',id=rs[0]) }}">삭제</a>
