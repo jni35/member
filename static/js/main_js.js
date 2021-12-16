@@ -10,3 +10,11 @@ function changePic(){
 function originPic(){
     pic.src = "../static/images/activity.jpg";
 }
+
+//시계
+setInterval(mywatch,1000);
+function mywatch(){
+    var data = new Date();
+    var now = data.toLocaleString();
+    document.getElementById("demo").innerHTML = now;
+}

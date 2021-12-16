@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 보기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div id="container">
+        {% include 'navbar.html' %}
+    <section>
+    <h1>게시글 보기</h1>
+        <table class="tbl_bo_view">
+            {% if rs %}
+            <tr>
+                <td>
+                    <input type="text" name="title" value="{{ rs[1] }}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="content" readonly>{{ rs[2] }}</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="mid" value="글쓴이 : {{ rs[5] }}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="{{ url_for('boardlist')}}">목록</a>
+                    {% if session['userName'] == rs[5] %}
+                    <a href="{{ url_for('board_edit', bno=rs[0]) }}">수정</a>
+                    <a onclick="return confirm('정말로 삭제하시겠습니까?')"></a>
+                    <a href="{{ url_for('board_del', bno=rs[0]) }}">삭제</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endif %}
+            </table>
+            <div class="btn_write">
+                <input type="button" value="글쓰기" onclick="goWrite()">
+            </div>
+        </section>
+    </div>
+</body>
+</html>

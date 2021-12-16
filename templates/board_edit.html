@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세 보기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div id="container">
+        {% include 'navbar.html' %}
+    <section>
+    <h1>게시글 보기</h1>
+        <form action="{{ url_for('board_edit', bno=rs[0]) }}" method="post">
+            <table class="tbl_bo_view">
+            {% if rs %}
+            <tr>
+                <td>
+                        <input type="text" name="title" value="{{ rs[1] }}">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="content">{{ rs[2] }}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" name="mid" value="글쓴이 : {{ rs[4] }}" readonly>
+                    </td>
+                </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="저장">
+                    <input type="reset" value="취소">
+                </td>
+            </tr>
+                {% endif %}
+            </table>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
